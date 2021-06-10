@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
       let totalItems = state.totalItems + 1;
       let products = state.products.map(product => {
         if(product.item === payload){
-          return { item: product.item, total: product.total + 1}
+          return { ...product, total: product.total + 1}
         }
         return product;
       });
@@ -26,10 +26,11 @@ export default (state = initialState, action) => {
       let totalItems = state.totalItems - 1;
       let products = state.products.map(product => {
         if(product.item === payload){
-          return { item: product.item, total: product.total - 1}
+          return { ...product, total: product.total - 1}
         }
         return product;
       });
+      console.log(products);
       return { totalItems, products };
     }
     case 'RESET': {
@@ -54,8 +55,8 @@ export const decrement = (item) => {
   }
 }
 
-export const reset = (item) => {
+export const reset = () => {
   return {
-    type: 'RESET',
+    type: 'RESET'
   }
 }
