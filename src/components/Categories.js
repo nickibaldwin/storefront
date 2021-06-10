@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Products from './Products.js';
-
-import { initialState } from '../store/categories.js';
+import { activeCategory } from '../store/categories';
 
 const Categories = props => {
   // const categories = initialState.products.reduce((accumulator, currentVal) => {
@@ -14,16 +13,16 @@ const Categories = props => {
   return (
     <section>
       <ul>
-        {initialState.categories.map(category => (
-            <li key={category}>
+        {props.categoriesReducer.categories.map(category => (
+            <li onClick={()=> props.activeCategory( category.name )}key={category}>
               <p>{category.name}</p>
-              <ul>
-                {props.counter.products.map(product => 
+              {/* <ul> */}
+                {/* {props.counter.products.map(product => 
                   {if(product.category == category.name) {
                     return <li><p>{product.item}</p></li>
                   }}
-                  )}
-              </ul>
+                  )} */}
+              {/* </ul> */}
               {/* <ul>
                 {props.counter.products.map(product => 
                   {if(product.category == category.name) {
@@ -40,9 +39,10 @@ const Categories = props => {
 }
 
 const mapStateToProps = state => ({
-  counter: state.counter
+  counter: state.productsReducer, 
+  categoriesReducer: state.categoriesReducer
 })
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {activeCategory};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);

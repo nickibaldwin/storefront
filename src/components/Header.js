@@ -12,7 +12,8 @@ function Header(props) {
 }
 
 const mapStateToProps = state => ({
-  totalItems: state.counter.totalItems
+  // totalItems: state.productsReducer.totalItems
+  data: state.data
 });
 
 export default connect(mapStateToProps)(Header);

@@ -8,6 +8,7 @@ const Products = props => {
     <section>
       <ul>
         {props.counter.products.map(product => {
+          if(product.category===props.categoriesReducer.activeCategory)
           return(
             <li key={product.item}>
               <p>{product.item} : {product.total}</p>
@@ -22,7 +23,8 @@ const Products = props => {
 }
 
 const mapStateToProps = state => ({
-  counter: state.counter
+  counter: state.productsReducer,
+  categoriesReducer: state.categoriesReducer
 })
 
 const mapDispatchToProps = { increment, decrement, reset }
